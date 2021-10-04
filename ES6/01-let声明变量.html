@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var 声明的变量  没有局部作用域  
+        // let 声明的变量  有局部作用域
+        {
+            var a = 100
+            let b = 1
+        }
+        console.log(a)  // 100
+        // console.log(b)  // ReferenceError: b is not defined
+       
+
+        let d = 500;
+        // let d = 600;
+
+        console.log(d);
+
+
+
+        // var声明时会提升变量
+        // let不会提升变量   
+
+        console.log(e); // undefined
+        var e = 600;    // 页面加载会提升变量先声明var e, 此时e = undefined，等到执行到了这一行才会进行赋值 
+        
+        console.log(f); // Uncaught ReferenceError: Cannot access 'f' before initialization
+        let f = 700; 
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+       <h3 id="h3">{{message}}</h3>
+
+       <p> <button v-on:click="updateInfo()">更新</button></p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+       let app = new Vue({
+           el : '#app',
+           data: {
+                message: '床前明月光'
+            },
+            methods: {
+                showInfo() {
+                    console.log('执行showInfo方法')
+                },
+                updateInfo() {
+                    console.log('执行updateInfo方法')
+                    this.message = '玻璃好上霜'
+                }
+            },
+            // 查看Vue初始化的四个钩子方法
+            beforeCreate() { 
+                // 1、创建之前：第一个被执行的钩子方法：实例被创建出来之前执行, data中的属性 和 methods中的方法 都还没有没初始化
+                console.log('beforeCreate');
+                console.log("this.message = " + this.message) // undefined
+                this.showInfo() // TypeError: this.showInfo is not a function 
+            },
+            created() { 
+                // 2、已创建：第二个被执行的钩子方法,created执行时，data中的属性 和 methods中的方法都已经被初始化好了！
+                // 即要调用 methods 中的方法，或者操作 data 中的数据，最早，只能在 created 中操作
+                console.log('created');
+                console.log("this.message = " + this.message) // 床前明月光
+                this.showInfo() //执行showInfo方法
+            },
+            beforeMount() { 
+                // 3、渲染之前：第三个被执行的钩子方法,beforeMount执行时，视图模板数据(this.message)已经在内存中编辑完成了，尚未被渲染到页面中
+                // 模板已加载，页面未渲染
+                console.log('beforeMount');
+                let h3Val = document.getElementById('h3').innerText;
+                console.log("页面元素数据" + h3Val) // {{ message }}
+                console.log("视图模板数据 this.message = " + this.message) // 床前明月光
+                // 
+            },
+            mounted() { 
+                // 4、已渲染：第四个被执行的钩子方法，此时，内存中的模板已经渲染到页面，用户已经可以看见内容
+                console.log('mounted');
+                let h3Val = document.getElementById('h3').innerText;
+                console.log("页面元素数据" + h3Val)                         // 床前明月光
+                console.log("视图模板数据 this.message = " + this.message)  // 床前明月光 
+                
+            },
+
+
+            // 更新时的两个方法
+            beforeUpdate() { 
+                // 数据更新的前一刻, 即beforeUpdate执行时，内存中的模板数据已更新，但是页面尚未被渲染
+                console.log('beforeUpdate');
+                let h3Val = document.getElementById('h3').innerText;
+                console.log("页面元素数据" + h3Val)                         // 床前明月光
+                console.log("视图模板数据 this.message = " + this.message)  // 玻璃好上霜
+            },
+            updated() {
+                // updated执行时，内存中的数据已更新，并且页面已经被渲染
+                console.log('updated');
+                let h3Val = document.getElementById('h3').innerText;
+                console.log("页面元素数据" + h3Val)                         // 玻璃好上霜
+                console.log("视图模板数据 this.message = " + this.message)  // 玻璃好上霜 
+            }
+       });
+    
+    </script>
+</body>
+</html>

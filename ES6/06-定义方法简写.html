@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 传统函数
+        const person1 = {
+            sayHi:function(){
+                console.log("Hi")
+            }
+        }
+        // person1.sayHi();//"Hi"
+
+
+        // ES6的方法，对象的方法 
+        let user = {
+            name: "zhangsan",
+            age: 20,
+            getHello : function() {
+                console.log("Hello World!")
+            },
+
+            getHello2() {
+                console.log("Hello World!")
+            }
+        }
+        user.getHello()  // "Hello World!"
+        user.getHello2()  // "Hello World!"
+
+
+    </script>
+</body>
+</html>

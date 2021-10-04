@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>条件渲染</title>
+</head>
+<body>
+    <div id="app">
+       <div>是否同意 
+           <input type="checkbox" name="" id="" v-model="ok">{{ok}}</input>
+        </div>
+        <div v-if="ok">同意</div>
+        <div v-else>查看协议...</div> 
+    </div>
+
+    <div id="app2">
+            <div>是否同意 
+                <input type="checkbox" name="" id="" v-model="ok">{{ok}}</input>
+             </div>
+             <div v-show="ok">同意</div>
+             <div v-show="!ok">查看协议...</div> 
+         </div>
+    <script src="vue.js"></script>
+    <script>
+       let app = new Vue({
+           el : '#app',
+           data : {
+               ok:false
+           }
+       });
+
+       let app2 = new Vue({
+           el : '#app2',
+           data : {
+               ok:false
+           }
+       });
+    </script>
+</body>
+</html>

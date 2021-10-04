@@ -1,0 +1,10 @@
+// 引入模块,注意：当前模块也需要写路径
+const m = require('./1.js');
+console.log(m);
+
+
+
+const result1 = m.sum(1, 2);
+const result2 = m.subtract(1, 2);
+
+console.log(result1, result2);
